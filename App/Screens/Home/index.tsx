@@ -2,6 +2,7 @@ import { View, Text, Button, TextInput, TouchableOpacity, Image } from 'react-na
 import React, { useEffect, useState } from 'react'
 import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated'
 import { useNavigation } from '@react-navigation/native';
+import { sharedElementTransition } from '../../Utils/SharedElementTransition';
 
 
 const Home = () => {
@@ -67,16 +68,24 @@ const Home = () => {
 
       {/* Render Products  */}
       {
-        products?.map((item:any) => (
-          <View style={{padding:10}}>
-              <TouchableOpacity key={item?.id} onPress={() =>navigation?.navigate('Details', {item})} >
-                  <Image source={{uri:item?.image}} style={{width:100, height:100}} />
+        products?.map((item:any) => {
+          console.log(`image-${item.id}`)
+          return(
+          <View style={{padding:10}} key={item?.id} >
+              <TouchableOpacity onPress={() =>navigation?.navigate('Details', {item})} >
+                  <Animated.Image source={{uri:item?.image}} style={{width:100, height:100}}
+                    sharedTransitionTag={`image-${item.id}`} sharedTransitionStyle={sharedElementTransition}
+                  />
               </TouchableOpacity>
           </View>
-        ))
+        )})
       }
     </View>
   )
 }
 
 export default Home
+
+// NOTES:
+// sharedTransitionTag is used by reanimated to find that matching tag and complete the transitions, for a list of component it is hard to make transition with a static tag like 'image', so tags will be unique like image-imageId as image-1 etc
+

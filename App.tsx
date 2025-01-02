@@ -6,16 +6,8 @@ import RootStackNavigation from './App/Navigation/RootStack';
 export default function App() {
   return (
     <NavigationContainer>
+    <StatusBar />
       <RootStackNavigation />
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

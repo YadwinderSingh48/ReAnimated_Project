@@ -14,7 +14,7 @@ const RootStackNavigation = () => {
         headerTintColor: '#fff'
     }} >
         <RootStack.Screen name='Home' component={Home} />
-        <RootStack.Screen name='Details' component={Details} />
+        <RootStack.Screen options={{headerShown:false}} name='Details' component={Details} />
 
     </RootStack.Navigator>
   )
