@@ -58,6 +58,7 @@ const Home = () => {
 
   return (
     <View>
+      <Button title='Cards' onPress={() => navigation?.navigate('Cards')} />
       <Button title='Animate' onPress={startAnimations} />
 
       {/* use of custom crated AnimatedInput component */}
